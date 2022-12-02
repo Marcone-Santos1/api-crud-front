@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>Crud</title>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-light bg-dark">
+      <a class="navbar-brand text-light" href="">
+        Crud
+      </a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-3 mb-3 text-right h2">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreateCliente"><i class="fa fa-user"></i>
+          Novo Cliente</a>
+      </div>
+      <div class="container mt-4">
+        <table class="table table-light text-center" id="table">
+          <thead class="bg-dark text-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Idade</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Opções</th>
+            </tr>
+          </thead>
+          <tbody id="elements-table">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalCreateCliente" tabindex="-1" role="dialog" aria-labelledby="modalCreateClienteTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCreateClienteTitle">Cadastro de Clinte</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nome</span>
+              </div>
+              <input required type="text" id="nome" name="nome" class="form-control" placeholder="Nome"
+                aria-label="Nome" aria-describedby="nome">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Idade</span>
+              </div>
+              <input required type="number" id="idade" name="idade" class="form-control" placeholder="Idade"
+                aria-label="Idade" aria-describedby="idade">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">CPF</span>
+              </div>
+              <input required type="text" id="cpf" name="cpf" maxlength="11" class="form-control" placeholder="cpf"
+                aria-label="cpf" aria-describedby="cpf">
+            </div>
+            <div class="input-group mb-3 cidade">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Cidade</span>
+              </div>
+              <select required="" id="cidade" name="cidade" class="uf-selector select2-container" name="state"
+                aria-describedby="cidade">
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <input type="submit" class="button-submit btn btn-primary">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalEditCliente" tabindex="-1" role="dialog" aria-labelledby="modalEditClienteTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEditClienteTitle">Edição Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nome</span>
+              </div>
+              <input required type="text" id="nomeEdit" name="nome" class="form-control" placeholder="Nome"
+                aria-label="Nome" aria-describedby="nome">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Idade</span>
+              </div>
+              <input required type="number" id="idadeEdit" name="idade" class="form-control" placeholder="Idade"
+                aria-label="Idade" aria-describedby="idade">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">CPF</span>
+              </div>
+              <input required type="text" id="cpfEdit" maxlength="11" name="cpf" class="form-control" placeholder="cpf"
+                aria-label="cpf" aria-describedby="cpf">
+            </div>
+            <div class="input-group mb-3 cidade">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Cidade</span>
+              </div>
+              <select required="" id="cidadeEdit" name="cidade" class="uf-selector select2-container" name="state"
+                aria-describedby="cidade">
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <input type="submit" class="button-submit-edit btn btn-primary">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalDeleteCliente" tabindex="-1" role="dialog" aria-labelledby="modalDeleteClienteTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalDeleteClienteTitle">Excluir Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          Tem certeza que dejesa excluir este cliente?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <input type="submit" class="button-submit-delete btn btn-primary">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+    crossorigin="anonymous"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+  <script src="script/index.js"></script>
+
+</body>
+
+</html>
